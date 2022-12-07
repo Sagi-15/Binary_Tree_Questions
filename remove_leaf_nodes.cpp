@@ -13,11 +13,14 @@ class BinaryTreeNode{
             this->right=NULL;
         }
 };
-int getSum(BinaryTreeNode<int>* root){
+void removeLeafNodes(BinaryTreeNode<int> *root){
     if(root==NULL){
-        return 0;
+        return;
     }
-    int left_subtree_sum=getSum(root->left);
-    int right_subtree_sum=getSum(root->right);
-    return root->data+left_subtree_sum+right_subtree_sum;
+    if(root->left==NULL and root->right==NULL){
+        root=NULL;
+        return;
+    }
+    removeLeafNodes(root->left);
+    removeLeafNodes(root->right);
 }

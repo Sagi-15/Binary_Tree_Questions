@@ -13,11 +13,16 @@ class BinaryTreeNode{
             this->right=NULL;
         }
 };
-int getSum(BinaryTreeNode<int>* root){
+void printNodesWithoutSibling(BinaryTreeNode<int> *root){
     if(root==NULL){
-        return 0;
+        return;
     }
-    int left_subtree_sum=getSum(root->left);
-    int right_subtree_sum=getSum(root->right);
-    return root->data+left_subtree_sum+right_subtree_sum;
+    else if(root->left!=NULL and root->right==NULL){
+        cout<<root->left->data<<" ";
+    }
+    else if(root->right!=NULL and root->left==NULL){
+        cout<<root->right->data<<" ";
+    }
+    printNodesWithoutSibling(root->left);
+    printNodesWithoutSibling(root->right);
 }
